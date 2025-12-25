@@ -108,7 +108,7 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight"
               >
-                <span className="block text-foreground mb-2">Hello, I'm</span>
+                <span className="block text-foreground mb-2">Hello, I&apos;m</span>
                 <span className="block bg-gradient-to-r from-[#34495e] via-[#5d6d7e] to-[#7f8c8d] bg-clip-text text-transparent">
                   Frank ISHIMWE
                 </span>
