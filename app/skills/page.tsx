@@ -72,59 +72,75 @@ const getLevelColor = (level: string) => {
 
 export default function SkillsPage() {
   return (
-    <div className="min-h-screen">
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Modern Background */}
+      <div className="fixed inset-0 -z-10 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950" />
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#5d6d7e]/5 dark:bg-[#5d6d7e]/10 rounded-full blur-3xl animate-float" style={{ animationDelay: "1.5s" }} />
+        <div className="absolute bottom-1/3 right-1/3 w-[400px] h-[400px] bg-[#34495e]/5 dark:bg-[#34495e]/10 rounded-full blur-3xl animate-float" style={{ animationDelay: "3.5s", animationDuration: "11s" }} />
+      </div>
+      
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="max-w-6xl mx-auto"
         >
-          <div className="text-center mb-12">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4">Skills</h1>
-            <p className="text-lg text-muted-foreground">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-[#34495e] via-[#5d6d7e] to-[#7f8c8d] bg-clip-text text-transparent">
+              Skills
+            </h1>
+            <p className="text-xl text-muted-foreground">
               A comprehensive overview of my technical expertise
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {skillCategories.map((category, categoryIndex) => (
               <motion.div
                 key={category.category}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
               >
-                <Card className="h-full hover:border-primary/50 transition-colors">
-                  <CardHeader>
-                    <CardTitle className="text-xl">{category.category}</CardTitle>
-                    <CardDescription>
-                      {category.skills.length} skills
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-wrap gap-2">
-                      {category.skills.map((skill) => (
-                        <motion.div
-                          key={skill.name}
-                          whileHover={{ scale: 1.05 }}
-                          transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                        >
-                          <Badge
-                            variant="outline"
-                            className="cursor-default text-xs py-1 px-2"
+                <motion.div
+                  whileHover={{ y: -8 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="h-full"
+                >
+                  <Card className="h-full hover:border-primary/50 transition-all duration-300 group border-2 rounded-2xl p-8 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <CardHeader className="relative z-10 p-0 mb-6">
+                      <CardTitle className="text-2xl group-hover:text-primary transition-colors mb-2">{category.category}</CardTitle>
+                      <CardDescription className="text-base">
+                        {category.skills.length} skills
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="relative z-10 p-0">
+                      <div className="flex flex-wrap gap-3">
+                        {category.skills.map((skill) => (
+                          <motion.div
+                            key={skill.name}
+                            whileHover={{ scale: 1.05, y: -2 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 17 }}
                           >
-                            {skill.name}
-                            <span className={`ml-2 px-1.5 py-0.5 rounded text-[10px] ${getLevelColor(skill.level)}`}>
-                              {skill.level}
-                            </span>
-                          </Badge>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
+                            <Badge
+                              variant="outline"
+                              className="cursor-default text-sm py-2 px-4 hover:bg-primary/10 hover:border-primary/50 transition-all rounded-xl border-2"
+                            >
+                              {skill.name}
+                              <span className={`ml-2 px-2 py-0.5 rounded-lg text-xs font-semibold ${getLevelColor(skill.level)}`}>
+                                {skill.level}
+                              </span>
+                            </Badge>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               </motion.div>
             ))}
           </div>

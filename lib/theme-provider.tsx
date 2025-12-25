@@ -20,7 +20,7 @@ type ThemeProviderState = {
 const initialState: ThemeProviderState = {
   theme: "system",
   setTheme: () => null,
-  actualTheme: "dark",
+  actualTheme: "light",
 };
 
 const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
@@ -32,11 +32,12 @@ export function ThemeProvider({
   ...props
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(defaultTheme);
-  const [actualTheme, setActualTheme] = useState<"dark" | "light">("dark");
+  const [actualTheme, setActualTheme] = useState<"dark" | "light">("light");
 
   useEffect(() => {
     const root = window.document.documentElement;
-
+    
+    // Apply theme immediately
     root.classList.remove("light", "dark");
 
     if (theme === "system") {
@@ -53,11 +54,27 @@ export function ThemeProvider({
   }, [theme]);
 
   useEffect(() => {
+    // Load theme from localStorage on mount
     const stored = localStorage.getItem(storageKey) as Theme | null;
     if (stored) {
       setTheme(stored);
+    } else {
+      // Apply default theme immediately if no stored theme
+      const root = window.document.documentElement;
+      root.classList.remove("light", "dark");
+      if (defaultTheme === "system") {
+        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+          .matches
+          ? "dark"
+          : "light";
+        root.classList.add(systemTheme);
+        setActualTheme(systemTheme);
+      } else {
+        root.classList.add(defaultTheme);
+        setActualTheme(defaultTheme);
+      }
     }
-  }, [storageKey]);
+  }, [storageKey, defaultTheme]);
 
   const value = {
     theme,

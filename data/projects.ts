@@ -11,6 +11,7 @@ export interface Project {
   githubUrl?: string;
   demoUrl?: string;
   featured: boolean;
+  image?: string;
 }
 
 export const projects: Project[] = [
@@ -25,6 +26,7 @@ export const projects: Project[] = [
     challenges: "Orchestrating multiple AI agents to work cohesively, managing context across conversations, and ensuring reliable recommendations.",
     impact: "Significantly reduced travel planning time for users and demonstrated advanced AI system integration capabilities.",
     featured: true,
+    image: "/images/voya-interface.jpg",
   },
   {
     id: "coffee-trends",
@@ -61,18 +63,20 @@ export const projects: Project[] = [
     challenges: "Implementing real-time tracking, optimizing for performance, and ensuring reliable order management.",
     impact: "Enhanced delivery efficiency and improved customer satisfaction through real-time tracking.",
     featured: true,
+    image: "/images/expressgo-project.jpg",
   },
   {
     id: "medbooking-web3",
     title: "MedBooking Web3",
     category: "Emerging Tech",
     problem: "Traditional medical booking systems lack transparency, security, and patient data ownership.",
-    solution: "Developed a Web3-based medical booking platform leveraging blockchain technology for secure, transparent, and decentralized healthcare appointment management.",
+    solution: "Developed a Web3-based medical booking platform leveraging blockchain technology for secure, transparent, and decentralized healthcare appointment management using Smart Contracts.",
     techStack: ["Next.js", "Solidity", "Web3.js", "Blockchain", "Smart Contracts"],
     role: "Full-stack & Blockchain Developer",
     challenges: "Learning Solidity, implementing smart contracts, integrating Web3 technologies with a modern frontend, and ensuring security.",
     impact: "Demonstrated the potential for blockchain in healthcare while providing a secure booking solution.",
     featured: false,
+    image: "/images/medbooking.jpg",
   },
   {
     id: "baho-coffee",
@@ -85,5 +89,6 @@ export const projects: Project[] = [
     challenges: "Creating scalable e-commerce solutions, integrating payment systems, and ensuring smooth user experience.",
     impact: "Enabled Baho Coffee to expand their digital presence and increase online sales.",
     featured: false,
+    image: "/images/baho-coffee.jpg",
   },
 ];

@@ -58,12 +58,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
+        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-background text-foreground`}
       >
-        <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
+        <ThemeProvider defaultTheme="light" storageKey="portfolio-theme">
           <Navigation />
           <ScrollProgress />
-          <main className="pt-16 min-h-screen flex flex-col">
+          <main className="pt-20 min-h-screen flex flex-col">
             <div className="flex-1">{children}</div>
             <Footer />
           </main>
